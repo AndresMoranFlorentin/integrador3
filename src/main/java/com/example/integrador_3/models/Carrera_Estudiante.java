@@ -1,4 +1,4 @@
-package com.example.integrador_3.modelos;
+package com.example.integrador_3.models;
 
 import jakarta.persistence.*;
 import lombok.Data;

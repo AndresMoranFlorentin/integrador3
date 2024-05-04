@@ -1,15 +1,14 @@
 package com.example.integrador_3.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import aj.org.objectweb.asm.commons.Remapper;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Entity
+@Table(name = "estudiante")
 @Data
 @NoArgsConstructor
 public class Estudiante {
@@ -24,10 +23,12 @@ public class Estudiante {
     private String apellido;
     @Column
     private String genero;
-    @Column int edad;
+    @Column
+    int edad;
     @Column
     private String ciudad;
     @OneToMany(mappedBy = "estudiante")
     private List<Carrera_Estudiante> carreras;
+
 
 }

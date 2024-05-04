@@ -1,15 +1,13 @@
 package com.example.integrador_3.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Entity
+@Table(name = "carrera")
 @Data
 @NoArgsConstructor
 public class Carrera {

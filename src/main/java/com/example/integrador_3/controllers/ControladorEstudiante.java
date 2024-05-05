@@ -1,7 +1,7 @@
-package com.example.integrador_3.controladores;
+package com.example.integrador_3.controllers;
 
 import com.example.integrador_3.models.Estudiante;
-import com.example.integrador_3.servicios.ServicioEstudiante;
+import com.example.integrador_3.services.ServicioEstudiante;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +35,16 @@ public class ControladorEstudiante {
     public ResponseEntity<?>getEstudianteNumLibreta(@PathVariable Long id){
         try{
             return ResponseEntity.status(HttpStatus.OK).body(estudianteServicio.getEstudiantePorNumLibreta(id));
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error. No se encuentra el objeto buscado" +
+                    ".\"}");
+        }
+    }
+
+    @GetMapping("/{id, ciudad}")
+    public ResponseEntity<?>getEstudiantesPorCarreraYCiudad(@PathVariable Long id,@PathVariable String ciudad){
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(estudianteServicio.getEstudiantesPorCarreraYCiudad(id, ciudad));
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error. No se encuentra el objeto buscado" +
                     ".\"}");

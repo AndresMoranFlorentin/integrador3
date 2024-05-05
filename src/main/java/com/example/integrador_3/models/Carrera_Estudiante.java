@@ -11,7 +11,8 @@ import lombok.NoArgsConstructor;
 public class Carrera_Estudiante {
     @EmbeddedId
     private CarreraEstudiantePorDni id;
-    @Column Long id_registro;
+    @Column
+    Long id_registro;
     @Column
     private Integer fecha_inscripcion;
     @Column
@@ -19,7 +20,7 @@ public class Carrera_Estudiante {
     @Column
     private int antiguedad;
     // Definir la relación con Carrera
-// Definir la relación con Carrera
+
     @ManyToOne
     @JoinColumn(name = "id_carrera", insertable = false, updatable = false)
     private Carrera carrera;

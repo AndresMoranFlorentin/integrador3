@@ -1,11 +1,8 @@
-package com.example.integrador_3.vistas;
+package com.example.integrador_3.views;
 
-import com.example.integrador_3.models.Carrera_Estudiante;
 import jakarta.persistence.Column;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
-
-import java.util.List;
 
 @Getter
 public class EstudianteDto {

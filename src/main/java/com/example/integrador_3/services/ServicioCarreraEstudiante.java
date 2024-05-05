@@ -1,8 +1,7 @@
-package com.example.integrador_3.servicios;
+package com.example.integrador_3.services;
 
 import com.example.integrador_3.models.Carrera_Estudiante;
 import com.example.integrador_3.repositories.CarreraEstudianteRepo;
-import com.example.integrador_3.repositories.CarreraRepo;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

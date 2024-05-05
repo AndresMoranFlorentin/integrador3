@@ -1,9 +1,7 @@
 package com.example.integrador_3.repositories;
 
-import com.example.integrador_3.models.Carrera;
-import com.example.integrador_3.models.Carrera_Estudiante;
 import com.example.integrador_3.models.Estudiante;
-import com.example.integrador_3.vistas.EstudianteDto;
+import com.example.integrador_3.views.EstudianteDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -21,8 +19,8 @@ public interface EstudianteRepo extends JpaRepository<Estudiante, Long> {
     @Query("SELECT e FROM Estudiante e ORDER BY e.apellido DESC")
     public List<Estudiante> getEstudiantesPorOrdenDelApellido();
 
-//    @Query("SELECT e FROM Estudiante e JOIN Carrera_Estudiante ce JOIN Carrera ca  WHERE (e.dni=ce.dni) AND (ce.id_carrera =:id_carrera) AND (e.ciudad =:ciudad)")
-//    public List<EstudianteDto> getEstudiantesPorCarreraYCiudad(Long id_carrera, String ciudad);
+    @Query("SELECT e FROM Estudiante e JOIN Carrera_Estudiante ce JOIN Carrera ca WHERE (e.dni=ce.id.dni) AND (ce.id.idCarrera =:id_carrera) AND (e.ciudad =:ciudad)")
+    public List<EstudianteDto> getEstudiantesPorCarreraYCiudad(Long id_carrera, String ciudad);
 
 
 

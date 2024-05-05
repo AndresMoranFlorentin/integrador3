@@ -1,4 +1,4 @@
-package com.example.integrador_3.controladores;
+package com.example.integrador_3.controllers;
 
 import com.example.integrador_3.models.Carrera_Estudiante;
 import com.example.integrador_3.repositories.CarreraEstudianteRepo;

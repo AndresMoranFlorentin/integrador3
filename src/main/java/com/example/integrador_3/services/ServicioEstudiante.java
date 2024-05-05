@@ -1,8 +1,8 @@
-package com.example.integrador_3.servicios;
+package com.example.integrador_3.services;
 
 import com.example.integrador_3.models.Estudiante;
 import com.example.integrador_3.repositories.EstudianteRepo;
-import com.example.integrador_3.vistas.EstudianteDto;
+import com.example.integrador_3.views.EstudianteDto;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ public class ServicioEstudiante {
 
         var resultado = estuRepo.getEstudiantePorNumLibreta(lib);
         try {
-            return resultado;//.stream().map(estudiante -> new EstudianteDto().collect(Collectors.toList());
+            return resultado;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
@@ -47,18 +47,18 @@ public class ServicioEstudiante {
         }
     }
 
-//    @Transactional
-//    public List<EstudianteDto> getEstudiantesPorCarreraYCiudad(Long id_carrera,String ciudad) throws Exception {
-//        var resultado = estuRepo.getEstudiantesPorCarreraYCiudad(id_carrera, ciudad);
-//        try {
-//            return resultado.stream().map(estudiante -> new EstudianteDto(estudiante.getDni(),
-//                    estudiante.getLibretaUniversitaria(), estudiante.getNombre(), estudiante.getApellido(),
-//                    estudiante.getGenero(), estudiante.getEdad(),
-//                    estudiante.getCiudad())).collect(Collectors.toList());
-//        } catch (Exception e) {
-//            throw new Exception(e.getMessage());
-//        }
-//    }
+    @Transactional
+    public List<EstudianteDto> getEstudiantesPorCarreraYCiudad(Long id_carrera,String ciudad) throws Exception {
+       var resultado = estuRepo.getEstudiantesPorCarreraYCiudad(id_carrera, ciudad);
+       try {
+            return resultado.stream().map(estudiante -> new EstudianteDto(estudiante.getDni(),
+                    estudiante.getLibretaUniversitaria(), estudiante.getNombre(), estudiante.getApellido(),
+                    estudiante.getGenero(), estudiante.getEdad(),
+                    estudiante.getCiudad())).collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
 
     @Transactional
     public Estudiante save(Estudiante entity) throws Exception {

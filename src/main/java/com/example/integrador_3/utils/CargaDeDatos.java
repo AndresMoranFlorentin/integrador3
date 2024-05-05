@@ -60,8 +60,7 @@ public class CargaDeDatos {
             for (CSVRecord csvRecord : csvParser) {
                 CarreraEstudiantePorDni id = new CarreraEstudiantePorDni(
                         Long.valueOf(csvRecord.get("id_carrera")),
-                        Long.valueOf(csvRecord.get("id_estudiante"))
-                );
+                        Long.valueOf(csvRecord.get("id_estudiante")));
 
                 Carrera_Estudiante ce = new Carrera_Estudiante();
                 ce.setId(id);
@@ -71,6 +70,7 @@ public class CargaDeDatos {
                 ce.setAntiguedad(Integer.parseInt(csvRecord.get("antiguedad")));
 
                 ceRepo.save(ce); // Guarda el CarreraEstudiante en la base de datos
+
             }
         }
     }

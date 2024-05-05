@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@Service("CarreraServicio")
+@Service("ServicioCarrera")
 public class ServicioCarrera{
 
     @Autowired

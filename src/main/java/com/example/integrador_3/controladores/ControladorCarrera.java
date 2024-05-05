@@ -1,37 +1,41 @@
 package com.example.integrador_3.controladores;
 
 import com.example.integrador_3.models.Carrera;
+import com.example.integrador_3.models.Carrera_Estudiante;
 import com.example.integrador_3.repositories.CarreraRepo;
 import com.example.integrador_3.vistas.CarreraDto;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service("ServicioCarrera")
+@RestController
+@RequestMapping("/carrera")
 public class ControladorCarrera {
     @Autowired
     private CarreraRepo carreraRepo;
 
-    @Transactional
-    public Carrera getCarreraByID(Long id_carrera) throws Exception {
-        var resultado = carreraRepo.getCarreraByID(id_carrera);
-        try {
-            return resultado;
-        } catch (Exception e) {
-            throw new Exception(e.getMessage());
+    @PostMapping("")
+    public ResponseEntity<?> save(@RequestBody Carrera entity){
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(carreraRepo.save(entity));
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error. No se pudo ingresar, revise los campos e intente nuevamente.\"}");
         }
     }
-
-    public List<CarreraDto> getCarrerasConInscriptos() throws Exception {
-        var resultado = carreraRepo.getCarrerasConInscriptos();
-        try {
-            return resultado.stream().map(carrera -> new CarreraDto(carrera.getId_carrera(), carrera.getNombre(), carrera.getDuracion(), carrera.getCant_inscriptos())).collect(Collectors.toList());
-        }
-        catch (Exception e) {
-            throw new Exception(e.getMessage());
-        }
-    }
+//    @GetMapping("")
+//    public List<CarreraDto> getCarrerasConInscriptos() throws Exception {
+//        var resultado = carreraRepo.getCarrerasConInscriptos();
+//        try {
+//            return resultado.stream().map(carrera -> new CarreraDto(carrera.getId_carrera(), carrera.getNombre(), carrera.getDuracion(), carrera.getCant_inscriptos())).collect(Collectors.toList());
+//        }
+//        catch (Exception e) {
+//            throw new Exception(e.getMessage());
+//        }
+//    }
 }

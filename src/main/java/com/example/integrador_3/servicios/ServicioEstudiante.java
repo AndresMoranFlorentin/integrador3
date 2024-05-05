@@ -47,15 +47,18 @@ public class ServicioEstudiante {
         }
     }
 
-    @Transactional
-    public List<EstudianteDto> getEstudiantesPorCarreraYCiudad(String ciudad, Long id_carrera) throws Exception {
-        var resultado = estuRepo.getEstudiantesPorCarreraYCiudad(id_carrera, ciudad);
-        try {
-            return resultado.stream().map(estudiante -> new EstudianteDto(estudiante.getDni(), estudiante.getLibretaUniversitaria(), estudiante.getNombre(), estudiante.getApellido(), estudiante.getGenero(), estudiante.getEdad(), estudiante.getCiudad())).collect(Collectors.toList());
-        } catch (Exception e) {
-            throw new Exception(e.getMessage());
-        }
-    }
+//    @Transactional
+//    public List<EstudianteDto> getEstudiantesPorCarreraYCiudad(Long id_carrera,String ciudad) throws Exception {
+//        var resultado = estuRepo.getEstudiantesPorCarreraYCiudad(id_carrera, ciudad);
+//        try {
+//            return resultado.stream().map(estudiante -> new EstudianteDto(estudiante.getDni(),
+//                    estudiante.getLibretaUniversitaria(), estudiante.getNombre(), estudiante.getApellido(),
+//                    estudiante.getGenero(), estudiante.getEdad(),
+//                    estudiante.getCiudad())).collect(Collectors.toList());
+//        } catch (Exception e) {
+//            throw new Exception(e.getMessage());
+//        }
+//    }
 
     @Transactional
     public Estudiante save(Estudiante entity) throws Exception {

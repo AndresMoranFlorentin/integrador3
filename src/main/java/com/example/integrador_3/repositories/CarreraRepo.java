@@ -14,11 +14,10 @@ public interface CarreraRepo extends JpaRepository<Carrera, Long> {
     @Query("SELECT c FROM Carrera c WHERE c.id_carrera=:id_carrera")
     public Carrera getCarreraByID(Long id_carrera);
 
-    @Query ("SELECT c.id_carrera,c.nombre,c.duracion, COUNT(c.duracion) AS cant_inscriptos " +
-            "FROM Carrera AS c " +
-            "JOIN Carrera_Estudiante AS ce " +
-            "WHERE (c.id_carrera=ce.id_carrera) " +
-            "GROUP BY (c.id_carrera) " +
-            "ORDER BY cant_inscriptos DESC")
-    public List<CarreraDto> getCarrerasConInscriptos();
+//    @Query ("SELECT c.id_carrera,c.nombre,c.duracion, COUNT(c.duracion) AS cant_inscriptos" +
+//            " FROM Carrera AS c JOIN Carrera_Estudiante AS ce" +
+//            " WHERE (c.id_carrera=ce.) " +
+//            " GROUP BY (c.id_carrera) " +
+//            " ORDER BY cant_inscriptos DESC")
+//    public List<CarreraDto> getCarrerasConInscriptos();
 }

@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/Carrera_Estudiantes")
+@RequestMapping("/carrera_estudiantes")
 public class ControladorCarreraEstudiante {
     @Autowired
     private CarreraEstudianteRepo ceRepo;

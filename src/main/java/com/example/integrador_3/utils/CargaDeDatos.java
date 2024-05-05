@@ -1,6 +1,7 @@
 package com.example.integrador_3.utils;
 
 import com.example.integrador_3.models.Carrera;
+import com.example.integrador_3.models.CarreraEstudiantePorDni;
 import com.example.integrador_3.models.Carrera_Estudiante;
 import com.example.integrador_3.repositories.CarreraEstudianteRepo;
 import com.example.integrador_3.repositories.CarreraRepo;
@@ -34,12 +35,12 @@ public class CargaDeDatos {
     }
 
     public void cargarDatosEstudiantesDesdeCSV() throws IOException {
-        File archivoCSV = ResourceUtils.getFile("src/main/java/com/example/integrador_3/csv/estudiantes.csv");
+         File archivoCSV = ResourceUtils.getFile("src/main/java/com/example/integrador_3/csv/estudiantes.csv");
          try (FileReader reader = new FileReader(archivoCSV);
              CSVParser csvParser = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(reader)) {
 
             for (CSVRecord csvRecord : csvParser) {
-                Estudiante estudiante = new Estudiante();
+                 Estudiante estudiante = new Estudiante();
                 estudiante.setDni(Long.valueOf(csvRecord.get("DNI")));
                 estudiante.setNombre(csvRecord.get("nombre"));
                 estudiante.setApellido(csvRecord.get("apellido"));
@@ -52,7 +53,7 @@ public class CargaDeDatos {
         }
     }
 
-    public void cargarDatosCEDesdeCSV() throws IOException {
+   /* public void cargarDatosCEDesdeCSV() throws IOException {
         File archivoCSV = ResourceUtils.getFile("src/main/java/com/example/integrador_3/csv/estudianteCarrera.csv");
 
         try (FileReader reader = new FileReader(archivoCSV);
@@ -63,12 +64,36 @@ public class CargaDeDatos {
                 ce.setId(Long.valueOf(csvRecord.get("id")));
                 ce.setFecha_inscripcion(Integer.valueOf(csvRecord.get("inscripcion")));
                 ce.setFecha_graduacion(Integer.valueOf(csvRecord.get("graduacion")));
+                ce.setId_carrera(Long.valueOf(csvRecord.get("id_carrera")));
+                ce.setDni(Long.valueOf(csvRecord.get("id_estudiante")));
                 ce.setAntiguedad(Integer.parseInt(csvRecord.get("antiguedad")));
                 ceRepo.save(ce); // Guarda el Estudiante en la base de datos
             }
         }
     }
+*/public void cargarDatosCEDesdeCSV() throws IOException {
+       File archivoCSV = ResourceUtils.getFile("src/main/java/com/example/integrador_3/csv/estudianteCarrera.csv");
 
+       try (FileReader reader = new FileReader(archivoCSV);
+            CSVParser csvParser = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(reader)) {
+
+           for (CSVRecord csvRecord : csvParser) {
+               CarreraEstudiantePorDni id = new CarreraEstudiantePorDni(
+                       Long.valueOf(csvRecord.get("id_carrera")),
+                       Long.valueOf(csvRecord.get("id_estudiante"))
+               );
+
+               Carrera_Estudiante ce = new Carrera_Estudiante();
+               ce.setId(id);
+               ce.setId_registro(Long.valueOf(csvRecord.get("id")));
+               ce.setFecha_inscripcion(Integer.valueOf(csvRecord.get("inscripcion")));
+               ce.setFecha_graduacion(Integer.valueOf(csvRecord.get("graduacion")));
+               ce.setAntiguedad(Integer.parseInt(csvRecord.get("antiguedad")));
+
+              ceRepo.save(ce); // Guarda el CarreraEstudiante en la base de datos
+           }
+       }
+   }
     public void cargarDatosCarreraDesdeCSV() throws IOException {
         File archivoCSV = ResourceUtils.getFile("src/main/java/com/example/integrador_3/csv/carreras.csv");
 

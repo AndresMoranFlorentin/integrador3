@@ -22,7 +22,7 @@ public class ControladorEstudiante {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error. Por favor intente más tarde.\"}");
         }
     }
-    @GetMapping("")
+    @GetMapping("/ordApellido")
     public ResponseEntity<?> getEstudiantesOrdenadosPorApellido(){
         try{
             return ResponseEntity.status(HttpStatus.OK).body(estudianteServicio.getEstudiantesOrdenadosPorApellido());

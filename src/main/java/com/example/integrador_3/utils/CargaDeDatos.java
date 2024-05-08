@@ -50,7 +50,6 @@ public class CargaDeDatos {
             }
         }
     }
-
     public void cargarDatosCEDesdeCSV() throws IOException {
         File archivoCSV = ResourceUtils.getFile("src/main/java/com/example/integrador_3/csv/estudianteCarrera.csv");
 
@@ -70,6 +69,43 @@ public class CargaDeDatos {
                 ce.setAntiguedad(Integer.parseInt(csvRecord.get("antiguedad")));
 
                 ceRepo.save(ce); // Guarda el CarreraEstudiante en la base de datos
+
+            }
+        }
+    }
+    public void cargarDatosCEDesdeCSV1() throws IOException {
+        File archivoCSV = ResourceUtils.getFile("src/main/java/com/example/integrador_3/csv/estudianteCarrera.csv");
+
+        try (FileReader reader = new FileReader(archivoCSV);
+             CSVParser csvParser = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(reader)) {
+
+            for (CSVRecord csvRecord : csvParser) {
+                Long idR= Long.valueOf(csvRecord.get("id"));
+                Long dni=Long.valueOf(csvRecord.get("id_estudiante"));
+                Long idC=Long.valueOf(csvRecord.get("id_carrera"));
+                Integer fechaI=Integer.valueOf(csvRecord.get("inscripcion"));
+                Integer fechaG=Integer.valueOf(csvRecord.get("graduacion"));
+                Integer antiguedad=Integer.parseInt(csvRecord.get("antiguedad"));
+                System.out.println("id registro: "+csvRecord.get("id")+"" +
+                        ",id_estudiante: " +csvRecord.get("id_estudiante")+"" +
+                        ", id_carrera: "+csvRecord.get("id_carrera")+", " +
+                        "fechaIn: "+fechaI+", " +
+                        "fechaGr: "+fechaG+", " +
+                        "antiguedad: "+antiguedad+"-->");
+                Carrera_Estudiante nuevo=new Carrera_Estudiante(idR,dni,idC,fechaI,fechaG,antiguedad);
+                ceRepo.save(nuevo);
+//                CarreraEstudiantePorDni id = new CarreraEstudiantePorDni(
+//                        Long.valueOf(csvRecord.get("id_carrera")),
+//                        Long.valueOf(csvRecord.get("id_estudiante")));
+//
+//                Carrera_Estudiante ce = new Carrera_Estudiante();
+//                ce.setId(id);
+//                ce.setId_registro(Long.valueOf(csvRecord.get("id")));
+//                ce.setFecha_inscripcion(Integer.valueOf(csvRecord.get("inscripcion")));
+//                ce.setFecha_graduacion(Integer.valueOf(csvRecord.get("graduacion")));
+//                ce.setAntiguedad(Integer.parseInt(csvRecord.get("antiguedad")));
+//
+//                ceRepo.save(ce); // Guarda el CarreraEstudiante en la base de datos
 
             }
         }

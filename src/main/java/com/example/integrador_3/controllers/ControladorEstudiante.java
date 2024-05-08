@@ -14,10 +14,10 @@ public class ControladorEstudiante {
     private ServicioEstudiante estudianteServicio;
 
 
-    @GetMapping("genero/{genero}")
-    public ResponseEntity<?> getEstudiantesPorGenero(@PathVariable String genero) {
+    @GetMapping("/genero/{generoE}")
+    public ResponseEntity<?> getEstudiantesPorGenero(@PathVariable String generoE) {
         try{
-            return ResponseEntity.status(HttpStatus.OK).body(estudianteServicio.getEstudiantesPorGenero(genero));
+            return ResponseEntity.status(HttpStatus.OK).body(estudianteServicio.getEstudiantesPorGenero(generoE));
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error. Por favor intente más tarde.\"}");
         }
@@ -31,7 +31,7 @@ public class ControladorEstudiante {
         }
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<?>getEstudianteNumLibreta(@PathVariable Long id){
         try{
             return ResponseEntity.status(HttpStatus.OK).body(estudianteServicio.getEstudiantePorNumLibreta(id));
@@ -41,15 +41,15 @@ public class ControladorEstudiante {
         }
     }
 
-    @GetMapping("/{id, ciudad}")
-    public ResponseEntity<?>getEstudiantesPorCarreraYCiudad(@PathVariable Long id,@PathVariable String ciudad){
-        try{
-            return ResponseEntity.status(HttpStatus.OK).body(estudianteServicio.getEstudiantesPorCarreraYCiudad(id, ciudad));
-        }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error. No se encuentra el objeto buscado" +
-                    ".\"}");
-        }
-    }
+//    @GetMapping("/{id, ciudad}")
+//    public ResponseEntity<?>getEstudiantesPorCarreraYCiudad(@PathVariable Long id,@PathVariable String ciudad){
+//        try{
+//            return ResponseEntity.status(HttpStatus.OK).body(estudianteServicio.getEstudiantesPorCarreraYCiudad(id, ciudad));
+//        }catch (Exception e){
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error. No se encuentra el objeto buscado" +
+//                    ".\"}");
+//        }
+//    }
 
     @PostMapping("")
     public ResponseEntity<?> save(@RequestBody Estudiante entity){

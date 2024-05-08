@@ -27,11 +27,16 @@ public class ServicioEstudiante {
         }
     }
 
+    @Autowired
+    private EstudianteRepo estudianteRepo;
+
     @Transactional
     public List<EstudianteDto> getEstudiantesPorGenero(String genero) throws Exception {
-        var resultado = estuRepo.getEstudiantePorGenero(genero);
         try {
-            return resultado.stream().map(estudiante -> new EstudianteDto(estudiante.getDni(), estudiante.getLibretaUniversitaria(), estudiante.getNombre(), estudiante.getApellido(), estudiante.getGenero(), estudiante.getEdad(), estudiante.getCiudad())).collect(Collectors.toList());
+            List<Estudiante> estudiantes = estudianteRepo.findByGenero(genero);
+            return estudiantes.stream()
+                    .map(estudiante -> new EstudianteDto(estudiante.getDni(), estudiante.getLibretaUniversitaria(), estudiante.getNombre(), estudiante.getApellido(), estudiante.getGenero(), estudiante.getEdad(), estudiante.getCiudad()))
+                    .collect(Collectors.toList());
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }

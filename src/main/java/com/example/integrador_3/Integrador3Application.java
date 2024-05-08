@@ -18,13 +18,10 @@ public class Integrador3Application {
         SpringApplication.run(Integrador3Application.class, args);
 
     }
-
     @PostConstruct
     public void init() throws IOException {
         cargaDeDatos.cargarDatosEstudiantesDesdeCSV();
         cargaDeDatos.cargarDatosCarreraDesdeCSV();
         cargaDeDatos.cargarDatosCEDesdeCSV();
     }
-
-
 }

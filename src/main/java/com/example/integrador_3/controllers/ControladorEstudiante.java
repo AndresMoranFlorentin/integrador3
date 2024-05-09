@@ -54,7 +54,7 @@ public class ControladorEstudiante {
         }
     }
 
-    @PostMapping("darDeAlta/")
+    @PostMapping("darDeAlta")
     public ResponseEntity<?> save(@RequestBody Estudiante entity){
         try{
             return ResponseEntity.status(HttpStatus.OK).body(estudianteServicio.save(entity));

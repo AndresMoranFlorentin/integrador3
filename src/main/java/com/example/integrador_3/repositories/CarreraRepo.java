@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 
-@Repository
+@Repository("CarreraRepo")
 public interface CarreraRepo extends JpaRepository<Carrera, Long> {
     @Query("SELECT c FROM Carrera c WHERE c.id_carrera=:id_carrera")
     public Carrera getCarreraByID(Long id_carrera);

@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-@Repository
+@Repository("CarreraEstudianteRepo")
 public interface CarreraEstudianteRepo extends JpaRepository<Carrera_Estudiante, Long> {
 
 }

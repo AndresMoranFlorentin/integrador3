@@ -2,10 +2,13 @@ package com.example.integrador_3.controllers;
 
 import com.example.integrador_3.models.Estudiante;
 import com.example.integrador_3.services.ServicioEstudiante;
+import com.example.integrador_3.views.EstudianteDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/estudiantes")
@@ -13,11 +16,11 @@ public class ControladorEstudiante {
     @Autowired
     private ServicioEstudiante estudianteServicio;
 
-
-    @GetMapping("/genero/{generoE}")
-    public ResponseEntity<?> getEstudiantesPorGenero(@PathVariable String generoE) {
+    @GetMapping("/genero/{genero}")
+    public ResponseEntity<?> getEstudiantesPorGenero(@PathVariable String genero) {
         try{
-            return ResponseEntity.status(HttpStatus.OK).body(estudianteServicio.getEstudiantesPorGenero(generoE));
+
+            return ResponseEntity.status(HttpStatus.OK).body(estudianteServicio.getEstudiantesPorGenero(genero));
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error. Por favor intente más tarde.\"}");
         }
@@ -41,17 +44,17 @@ public class ControladorEstudiante {
         }
     }
 
-//    @GetMapping("/{id, ciudad}")
-//    public ResponseEntity<?>getEstudiantesPorCarreraYCiudad(@PathVariable Long id,@PathVariable String ciudad){
-//        try{
-//            return ResponseEntity.status(HttpStatus.OK).body(estudianteServicio.getEstudiantesPorCarreraYCiudad(id, ciudad));
-//        }catch (Exception e){
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error. No se encuentra el objeto buscado" +
-//                    ".\"}");
-//        }
-//    }
+    @GetMapping("localizar/{id}/{ciudad}")
+    public ResponseEntity<?>getEstudiantesPorCarreraYCiudad(@PathVariable Long id,@PathVariable String ciudad){
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(estudianteServicio.getEstudiantesPorCarreraYCiudad(id, ciudad));
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error. No se encuentra el objeto buscado" +
+                    ".\"}");
+        }
+    }
 
-    @PostMapping("")
+    @PostMapping("darDeAlta/")
     public ResponseEntity<?> save(@RequestBody Estudiante entity){
         try{
             return ResponseEntity.status(HttpStatus.OK).body(estudianteServicio.save(entity));

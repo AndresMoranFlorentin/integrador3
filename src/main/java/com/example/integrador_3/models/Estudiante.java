@@ -30,5 +30,13 @@ public class Estudiante {
     @OneToMany(mappedBy = "estudiante")
     private List<Carrera_Estudiante> carreras;
 
-
+    public Estudiante(Long dni, Long libretaUniversitaria, String nombre, String apellido, String genero, int edad, String ciudad) {
+        this.dni = dni;
+        this.libretaUniversitaria = libretaUniversitaria;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.genero = genero;
+        this.edad = edad;
+        this.ciudad = ciudad;
+    }
 }

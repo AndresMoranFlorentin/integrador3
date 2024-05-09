@@ -5,8 +5,11 @@ import com.example.integrador_3.repositories.EstudianteRepo;
 import com.example.integrador_3.views.EstudianteDto;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -27,16 +30,12 @@ public class ServicioEstudiante {
         }
     }
 
-    @Autowired
-    private EstudianteRepo estudianteRepo;
-
     @Transactional
     public List<EstudianteDto> getEstudiantesPorGenero(String genero) throws Exception {
+        System.out.println("El genero que llega es:----------->"+genero);
+        var resultado = estuRepo.findByGenero(genero);
         try {
-            List<Estudiante> estudiantes = estudianteRepo.findByGenero(genero);
-            return estudiantes.stream()
-                    .map(estudiante -> new EstudianteDto(estudiante.getDni(), estudiante.getLibretaUniversitaria(), estudiante.getNombre(), estudiante.getApellido(), estudiante.getGenero(), estudiante.getEdad(), estudiante.getCiudad()))
-                    .collect(Collectors.toList());
+            return resultado.stream().map(estudiante -> new EstudianteDto(estudiante.getDni(), estudiante.getLibretaUniversitaria(), estudiante.getNombre(), estudiante.getApellido(), estudiante.getGenero(), estudiante.getEdad(), estudiante.getCiudad())).collect(Collectors.toList());
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
@@ -54,7 +53,9 @@ public class ServicioEstudiante {
 
     @Transactional
     public List<EstudianteDto> getEstudiantesPorCarreraYCiudad(Long id_carrera,String ciudad) throws Exception {
+     System.out.println("el id carrera es: "+id_carrera+", y la ciudad es: "+ciudad);
        var resultado = estuRepo.getEstudiantesPorCarreraYCiudad(id_carrera, ciudad);
+      // System.out.println("el size de resultado es: "+resultado.size());
        try {
             return resultado.stream().map(estudiante -> new EstudianteDto(estudiante.getDni(),
                     estudiante.getLibretaUniversitaria(), estudiante.getNombre(), estudiante.getApellido(),
@@ -68,7 +69,7 @@ public class ServicioEstudiante {
     @Transactional
     public Estudiante save(Estudiante entity) throws Exception {
         try{
-            return (Estudiante) estuRepo.save(entity);
+            return estuRepo.save(entity);
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }

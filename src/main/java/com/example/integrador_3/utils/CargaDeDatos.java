@@ -6,6 +6,7 @@ import com.example.integrador_3.models.Carrera_Estudiante;
 import com.example.integrador_3.repositories.CarreraEstudianteRepo;
 import com.example.integrador_3.repositories.CarreraRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;
 import org.apache.commons.csv.CSVFormat;
@@ -31,8 +32,7 @@ public class CargaDeDatos {
         this.carreraRepo = carreraRepo;
         this.estudianteRepo = estudianteRepo;
     }
-
-    public void cargarDatosEstudiantesDesdeCSV() throws IOException {
+     public void cargarDatosEstudiantesDesdeCSV() throws IOException {
         File archivoCSV = ResourceUtils.getFile("src/main/java/com/example/integrador_3/csv/estudiantes.csv");
         try (FileReader reader = new FileReader(archivoCSV);
              CSVParser csvParser = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(reader)) {

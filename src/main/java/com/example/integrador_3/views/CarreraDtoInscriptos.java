@@ -1,0 +1,20 @@
+package com.example.integrador_3.views;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class CarreraDtoInscriptos {
+    private Long id_carrera;
+    private String nombre;
+    private int duracion;
+    private int cant_inscriptos;
+
+    public CarreraDtoInscriptos(Long id_carrera, String nombre, int duracion,int cantIns) {
+        this.id_carrera = id_carrera;
+        this.nombre = nombre;
+        this.duracion = duracion;
+        this.cant_inscriptos=cantIns;
+    }
+}

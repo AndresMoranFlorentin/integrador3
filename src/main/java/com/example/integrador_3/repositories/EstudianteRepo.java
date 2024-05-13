@@ -13,14 +13,18 @@ import java.util.List;
 public interface EstudianteRepo extends JpaRepository<Estudiante, Long> {
     @Query("SELECT e FROM Estudiante e WHERE e.genero=:genero ")
     public List<Estudiante> findByGenero(@Param("genero") String genero);
+
     @Query("SELECT e FROM Estudiante e WHERE e.libretaUniversitaria=:lib")
     public Estudiante getEstudiantePorNumLibreta(Long lib);
 
     @Query("SELECT e FROM Estudiante e ORDER BY e.apellido DESC")
     public List<Estudiante> getEstudiantesPorOrdenDelApellido();
 
-    @Query("SELECT e FROM Estudiante e JOIN Carrera_Estudiante ce JOIN Carrera ca WHERE(e.dni=ce.id.dni) AND  (ce.id.idCarrera =:id_carrera) AND (e.ciudad =:ciudad)")
-    public List<EstudianteDto> getEstudiantesPorCarreraYCiudad(Long id_carrera, String ciudad);
+    @Query(nativeQuery = true,
+            value = "   SELECT DISTINCT e.* FROM Estudiante e JOIN Carrera_Estudiante ce JOIN Carrera c " +
+                    "    WHERE(e.dni=ce.dni) AND(e.ciudad=:ciudad) AND(ce.id_carrera=:id_carrera)")
+    public List<Estudiante> getEstudiantesPorCarreraYCiudad(@Param("id_carrera") Long id_carrera, @Param("ciudad") String ciudad);
 
+    //usar id carrera 1 y ciudad Chilly-Mazarin como ejemplo
 
 }

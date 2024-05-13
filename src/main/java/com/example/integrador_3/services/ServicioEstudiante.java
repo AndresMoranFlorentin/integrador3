@@ -21,7 +21,6 @@ public class ServicioEstudiante {
 
     @Transactional
     public Estudiante getEstudiantePorNumLibreta(Long lib) throws Exception {
-
         var resultado = estuRepo.getEstudiantePorNumLibreta(lib);
         try {
             return resultado;
@@ -29,7 +28,6 @@ public class ServicioEstudiante {
             throw new Exception(e.getMessage());
         }
     }
-
     @Transactional
     public List<EstudianteDto> getEstudiantesPorGenero(String genero) throws Exception {
         System.out.println("El genero que llega es:----------->" + genero);
@@ -50,14 +48,11 @@ public class ServicioEstudiante {
             throw new Exception(e.getMessage());
         }
     }
-
     @Transactional
-    public List<EstudianteDto> getEstudiantesPorCarreraYCiudad(Long id_carrera, String ciudad) throws Exception {
-        System.out.println("el id carrera es: " + id_carrera + ", y la ciudad es: " + ciudad);
-        var resultado = estuRepo.getEstudiantesPorCarreraYCiudad(id_carrera, ciudad);
-        System.out.println("el resultado es: " + resultado);
-        try {
-            return resultado.stream().map(estudiante -> new EstudianteDto(estudiante.getDni(), estudiante.getLibretaUniversitaria(), estudiante.getNombre(), estudiante.getApellido(), estudiante.getGenero(), estudiante.getEdad(), estudiante.getCiudad())).collect(Collectors.toList());
+    public List<Estudiante> getEstudiantesPorCarreraYCiudad(Long id_carrera, String ciudad) throws Exception {
+         var resultados = estuRepo.getEstudiantesPorCarreraYCiudad(id_carrera, ciudad);
+         try {
+            return  resultados;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }

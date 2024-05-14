@@ -3,11 +3,15 @@ package com.example.integrador_3.views;
 import jakarta.persistence.Column;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
+import lombok.Setter;
+
+import java.io.Serializable;
 
 @Getter
-public class EstudianteDto {
+@Setter
+public class EstudianteDto implements Serializable {
     private Long dni;
-    private Long libretaUniversitaria;
+    private Long libreta_universitaria;
     private String nombre;
     private String apellido;
     private String genero;
@@ -16,7 +20,7 @@ public class EstudianteDto {
 
     public EstudianteDto(Long dni, Long libretaUniversitaria, String nombre, String apellido, String genero, int edad, String ciudad) {
         this.dni = dni;
-        this.libretaUniversitaria = libretaUniversitaria;
+        this.libreta_universitaria = libretaUniversitaria;
         this.nombre = nombre;
         this.apellido = apellido;
         this.genero = genero;

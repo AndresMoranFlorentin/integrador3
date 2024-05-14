@@ -7,12 +7,13 @@ import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
-public class CarreraDto {
+public class CarreraDto implements Serializable {
     private Long id_carrera;
     private String nombre;
     private int duracion;

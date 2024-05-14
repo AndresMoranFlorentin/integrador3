@@ -9,10 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service("ServicioCarrera")
 public class ServicioCarrera {
@@ -48,6 +46,7 @@ public class ServicioCarrera {
             throw new Exception(e.getMessage());
         }
     }
+    @Transactional
     public List<ReporteTdo> getReporteDeLasCarrerasCronologico() throws Exception {
         List<Object[]> resultados = carreraRepo.getReporteCarreras();
         List<ReporteTdo> lista = new ArrayList<>();
@@ -56,7 +55,6 @@ public class ServicioCarrera {
             int anio = (int) resultado[1];
             Long cantInscriptos =(Long) resultado[2]; // El resultado del conteo es de tipo long
             Long cantEgresados=(Long)resultado[3];
-            System.out.println("nombre: "+nombre+", anio: "+anio+", inscriptos: "+cantInscriptos+", egresados: "+cantEgresados);
             ReporteTdo nuevo = new ReporteTdo(nombre, anio, cantInscriptos,cantEgresados);
             lista.add(nuevo);
         }
@@ -66,7 +64,8 @@ public class ServicioCarrera {
             throw new Exception(e.getMessage());
         }
     }
-    public Optional<Carrera> getCarrerasPorId(Long id) throws Exception {
+     @Transactional
+    public Optional<Carrera> getCarreraPorId(Long id) throws Exception {
         var resultado = carreraRepo.findById(id);
         try {
             return resultado;

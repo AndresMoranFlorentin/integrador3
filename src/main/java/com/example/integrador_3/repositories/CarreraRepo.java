@@ -1,14 +1,11 @@
 package com.example.integrador_3.repositories;
 
 import com.example.integrador_3.models.Carrera;
-import com.example.integrador_3.views.CarreraDto;
-import com.example.integrador_3.views.CarreraDtoInscripto;
-import com.example.integrador_3.views.CarreraDtoInscriptos;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.Iterator;
 import java.util.List;
 
 
@@ -16,8 +13,6 @@ import java.util.List;
 public interface CarreraRepo extends JpaRepository<Carrera, Long> {
     @Query("SELECT c.id_carrera, c.nombre, c.duracion, COUNT(ce.id.idCarrera) AS cant_inscriptos FROM Carrera c JOIN Carrera_Estudiante  ce ON (ce.id.idCarrera = c.id_carrera) GROUP BY c.id_carrera, c.nombre, c.duracion ORDER BY cant_inscriptos DESC ")
     List<Object[]> getCarrerasConInscriptos();
-    @Query("SELECT c FROM Carrera AS c WHERE c.id_carrera=:id ")
-    public Carrera getCarrerasPorId(Long id);
 @Query(nativeQuery = true,value = "SELECT c.nombre, ce.fecha_inscripcion AS anio, COUNT(ce.fecha_inscripcion) AS inscriptos, 0 AS graduados " +
         "FROM Carrera c " +
         "INNER JOIN Carrera_Estudiante ce ON c.id_carrera = ce.id_carrera " +

@@ -45,7 +45,7 @@ public class CargaDeDatos {
                 estudiante.setGenero(csvRecord.get("genero"));
                 estudiante.setEdad(Integer.parseInt(csvRecord.get("edad")));
                 estudiante.setCiudad(csvRecord.get("ciudad"));
-                estudiante.setLibretaUniversitaria(Long.valueOf(csvRecord.get("LU")));
+                estudiante.setLibreta_universitaria(Long.valueOf(csvRecord.get("LU")));
                 estudianteRepo.save(estudiante); // Guarda el Estudiante en la base de datos
             }
         }
@@ -94,19 +94,6 @@ public class CargaDeDatos {
                         "antiguedad: "+antiguedad+"-->");
                 Carrera_Estudiante nuevo=new Carrera_Estudiante(idR,dni,idC,fechaI,fechaG,antiguedad);
                 ceRepo.save(nuevo);
-//                CarreraEstudiantePorDni id = new CarreraEstudiantePorDni(
-//                        Long.valueOf(csvRecord.get("id_carrera")),
-//                        Long.valueOf(csvRecord.get("id_estudiante")));
-//
-//                Carrera_Estudiante ce = new Carrera_Estudiante();
-//                ce.setId(id);
-//                ce.setId_registro(Long.valueOf(csvRecord.get("id")));
-//                ce.setFecha_inscripcion(Integer.valueOf(csvRecord.get("inscripcion")));
-//                ce.setFecha_graduacion(Integer.valueOf(csvRecord.get("graduacion")));
-//                ce.setAntiguedad(Integer.parseInt(csvRecord.get("antiguedad")));
-//
-//                ceRepo.save(ce); // Guarda el CarreraEstudiante en la base de datos
-
             }
         }
     }

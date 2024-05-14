@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -12,7 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 public class Carrera {
     @Id
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_carrera;
     @Column
     private String nombre;
@@ -21,4 +21,10 @@ public class Carrera {
     @OneToMany(mappedBy = "carrera")
     private List<Carrera_Estudiante> estudiantes;
 
+    public Carrera(Long id_carrera, String nombre, int duracion ) {
+        this.id_carrera = id_carrera;
+        this.nombre = nombre;
+        this.duracion = duracion;
+        this.estudiantes = new ArrayList<>();
+    }
 }

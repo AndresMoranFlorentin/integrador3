@@ -1,5 +1,6 @@
 package com.example.integrador_3.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,7 @@ public class Carrera {
     @Column
     private int duracion;
     @OneToMany(mappedBy = "carrera")
+    @JsonIgnore
     private List<Carrera_Estudiante> estudiantes;
 
     public Carrera(Long id_carrera, String nombre, int duracion ) {

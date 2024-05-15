@@ -1,5 +1,6 @@
 package com.example.integrador_3.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -24,6 +25,7 @@ public class Carrera_Estudiante {
     // Definir la relación con Carrera
 
     @ManyToOne
+    @JsonIgnore // Evitar recursión infinita
     @JoinColumn(name = "id_carrera", insertable = false, updatable = false)
     private Carrera carrera;
 

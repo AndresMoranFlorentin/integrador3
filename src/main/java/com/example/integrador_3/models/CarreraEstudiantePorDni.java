@@ -10,11 +10,14 @@ import java.io.Serializable;
 @Embeddable
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class CarreraEstudiantePorDni implements Serializable {
     @Column(name = "id_carrera")
     private Long idCarrera;
 
     @Column(name = "dni")
     private Long dni;
+    public CarreraEstudiantePorDni(Long idC,Long dni){
+        this.dni=dni;
+        this.idCarrera=idC;
+    }
 }

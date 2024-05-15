@@ -28,9 +28,9 @@ public class ControladorCarrera {
         }
     }
     @GetMapping("/{id_carrera}")
-    public ResponseEntity<?> getCarrerasPorId(Long id) throws Exception {
+    public ResponseEntity<?> getCarrerasPorId(@PathVariable Long id_carrera) throws Exception {
         try{
-            return ResponseEntity.status(HttpStatus.OK).body(servicioCarrera.getCarreraPorId(id));
+            return ResponseEntity.status(HttpStatus.OK).body(servicioCarrera.getCarreraPorId(id_carrera));
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{Error. No se encuentra la carrera buscada}");
         }

@@ -9,12 +9,13 @@ public class CarreraDtoInscriptos {
     private Long id_carrera;
     private String nombre;
     private int duracion;
-    private int cant_inscriptos;
-
-    public CarreraDtoInscriptos(Long id_carrera, String nombre, int duracion,int cantIns) {
+    private Long cant_inscriptos;
+    public CarreraDtoInscriptos(Long id_carrera, String nombre, int duracion, Long cant_inscriptos) {
         this.id_carrera = id_carrera;
         this.nombre = nombre;
         this.duracion = duracion;
-        this.cant_inscriptos=cantIns;
+        this.cant_inscriptos = cant_inscriptos;
     }
+
+
 }

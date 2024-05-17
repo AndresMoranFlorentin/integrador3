@@ -7,7 +7,6 @@ import com.example.integrador_3.views.ReporteTdo;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,8 +36,7 @@ public class ServicioCarrera {
             String nombre = (String) resultado[1];
             int duracion = (int) resultado[2];
             Long cantInscriptos =(Long) resultado[3]; // El resultado del conteo es de tipo long
-            Integer cI=Integer.parseInt(String.valueOf(cantInscriptos));
-            CarreraDtoInscriptos nuevo = new CarreraDtoInscriptos(idCarrera, nombre, duracion, cI);
+             CarreraDtoInscriptos nuevo = new CarreraDtoInscriptos(idCarrera, nombre, duracion, cantInscriptos);
             lista.add(nuevo);
         }
          try {

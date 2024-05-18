@@ -1,7 +1,5 @@
 package com.example.integrador_3.views;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
 

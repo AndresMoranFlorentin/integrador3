@@ -2,13 +2,10 @@ package com.example.integrador_3.controllers;
 
 import com.example.integrador_3.models.Estudiante;
 import com.example.integrador_3.services.ServicioEstudiante;
-import com.example.integrador_3.views.EstudianteDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/estudiantes")

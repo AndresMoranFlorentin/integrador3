@@ -6,7 +6,6 @@ import com.example.integrador_3.models.Carrera_Estudiante;
 import com.example.integrador_3.repositories.CarreraEstudianteRepo;
 import com.example.integrador_3.repositories.CarreraRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;
 import org.apache.commons.csv.CSVFormat;

@@ -1,17 +1,12 @@
 package com.example.integrador_3.controllers;
 
 import com.example.integrador_3.models.Carrera;
-import com.example.integrador_3.repositories.CarreraRepo;
 import com.example.integrador_3.services.ServicioCarrera;
-import com.example.integrador_3.services.ServicioEstudiante;
-import com.example.integrador_3.views.CarreraDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/carreras")

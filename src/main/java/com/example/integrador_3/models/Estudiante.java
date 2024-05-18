@@ -1,6 +1,5 @@
 package com.example.integrador_3.models;
 
-import aj.org.objectweb.asm.commons.Remapper;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -15,7 +14,6 @@ import java.util.List;
 @NoArgsConstructor
 public class Estudiante {
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long dni;
     @Column
     private Long libreta_universitaria;

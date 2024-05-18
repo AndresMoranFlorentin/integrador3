@@ -1,7 +1,6 @@
 package com.example.integrador_3.repositories;
 
 import com.example.integrador_3.models.Estudiante;
-import com.example.integrador_3.views.EstudianteDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

@@ -33,12 +33,7 @@ public class Carrera_Estudiante {
     @ManyToOne
     @JoinColumn(name = "dni", insertable = false, updatable = false)
     private Estudiante estudiante;
-    /* @ManyToOne
-     @JoinColumn(name = "fk_carrera")
-     private Carrera carrera;
-     @ManyToOne
-     @JoinColumn(name = "fk_estudiante")
-     private Estudiante estudiante;*/
+
    public Carrera_Estudiante(Long id_registro,Long dni,Long id_carrera,Integer fecha_inscripcion,Integer fecha_graduacion,Integer antiguedad){
        CarreraEstudiantePorDni nuevo= new CarreraEstudiantePorDni(dni,id_carrera);
        this.id=nuevo;

@@ -1,15 +1,9 @@
 package com.example.integrador_3.views;
 
-import com.example.integrador_3.models.Carrera_Estudiante;
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
